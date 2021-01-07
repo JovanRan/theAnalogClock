@@ -95,8 +95,22 @@ public class ClockPanel extends JPanel implements Runnable {
         }
     }
 
+    //creating methods for the function "reset"
+
     public void setRunning(boolean running) {
         this.running = running;
+    }
+
+    public void setSeconds(int seconds){
+        this.seconds = seconds;
+    }
+
+    public void setMinutes(int minutes){
+        this.minutes = minutes;
+    }
+
+    public void setHours(int hours){
+        this.hours = hours;
     }
 
 

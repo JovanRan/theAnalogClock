@@ -9,6 +9,7 @@ public class Clock extends JFrame implements ActionListener {
     // Erstellung der Variablen (Buttons)
     private JButton start;
     private JButton stop;
+    private JButton reset;
 
 
     private ClockPanel panel2;
@@ -28,11 +29,17 @@ public class Clock extends JFrame implements ActionListener {
         stop = new JButton("Stop");
         stop.addActionListener(this);
 
+        reset = new JButton("Reset");
+        reset.addActionListener(this);
+
 
         JPanel buttons = new JPanel(new FlowLayout());
 
+        // making buttons visible on the clock panel
+
         buttons.add(start);
         buttons.add(stop);
+        buttons.add(reset);
         this.add(buttons, BorderLayout.SOUTH);
 
         this.setSize(700, 500);
@@ -57,6 +64,14 @@ public class Clock extends JFrame implements ActionListener {
 
         if (e.getSource() == stop) {
             panel2.setRunning(false);
+        }
+
+        if (e.getSource() == reset) {
+            panel2.setSeconds(0);
+            panel2.setMinutes(0);
+            panel2.setHours(0);
+            panel2.setRunning(false);
+            panel2.repaint();
         }
 
     }
