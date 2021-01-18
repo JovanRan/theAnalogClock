@@ -19,18 +19,21 @@ public class ClockPanel extends JPanel implements Runnable {
     double angle = Math.PI / -30;
 
 
+    Color color = Color.green;
+    Color circleColor = Color.white;
+
     public void paintComponent(Graphics g) {
 
         Graphics2D gd = (Graphics2D) g;
-        gd.setColor(Color.blue);
+        gd.setColor(color);
         gd.fillRect(0, 0, this.getWidth(), this.getHeight());
-        Font font = new Font("Arial", Font.BOLD, 30);
-        gd.setFont(font);
+        Font schrift = new Font("Arial", Font.BOLD, 30);
+        gd.setFont(schrift);
 
 
         Graphics2D circle = (Graphics2D) g;
         circle.setStroke(new BasicStroke(10));
-        circle.setColor(Color.white);
+        circle.setColor(circleColor);
         circle.fillOval(185, 45, 325, 325);
 
 
@@ -62,7 +65,8 @@ public class ClockPanel extends JPanel implements Runnable {
         at.preConcatenate(aff);
         gd.transform(at);
 
-        // Zeiger für die seconds
+        // A long, thinner "minute" hand. Creating the hand and adding a color.
+
         gd.setColor(Color.RED);
         gd.setStroke(new BasicStroke(1));
         Line2D.Double line = new Line2D.Double(0, 0, 0, 120);
@@ -70,7 +74,8 @@ public class ClockPanel extends JPanel implements Runnable {
         Shape ss = at.createTransformedShape(line);
         gd.draw(ss);
 
-        // Zeiger für die minutes
+        // A long, thinner "minute" hand. Creating the hand and adding a color.
+
         gd.setColor(Color.BLACK);
         gd.setStroke(new BasicStroke(3));
         Line2D.Double line2 = new Line2D.Double(0, 0, 0, 100);
@@ -78,7 +83,8 @@ public class ClockPanel extends JPanel implements Runnable {
         Shape sm = at.createTransformedShape(line2);
         gd.draw(sm);
 
-        // Zeiger für die hours
+        // A short, thick "hour" hand. Creating the hand and adding a color.
+
         gd.setColor(Color.BLACK);
         gd.setStroke(new BasicStroke(5));
         Line2D.Double line3 = new Line2D.Double(0, 0, 0, 80);
@@ -88,6 +94,7 @@ public class ClockPanel extends JPanel implements Runnable {
 
     }
 
+
     public void start() {
         if (thread == null) {
             thread = new Thread(this);
@@ -95,7 +102,7 @@ public class ClockPanel extends JPanel implements Runnable {
         }
     }
 
-    //creating methods for the function "reset"
+    // Creating methods for the function "reset".
 
     public void setRunning(boolean running) {
         this.running = running;
@@ -151,5 +158,15 @@ public class ClockPanel extends JPanel implements Runnable {
         }
 
     }
+
+
+    public void paint(Color b) {
+        this.color = b;
+    }
+
+    public void paintClock(Color c) {
+        this.circleColor = c;
+    }
+
 
 }
