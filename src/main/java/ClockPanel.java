@@ -19,7 +19,7 @@ public class ClockPanel extends JPanel implements Runnable {
     double angle = Math.PI / -30;
 
 
-    Color color = Color.green;
+    Color color = Color.blue;
     Color circleColor = Color.white;
 
     public void paintComponent(Graphics g) {

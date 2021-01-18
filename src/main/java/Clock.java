@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalTime;
 import java.util.Random;
 
 public class Clock extends JFrame implements ActionListener {
@@ -13,9 +14,10 @@ public class Clock extends JFrame implements ActionListener {
     private JButton reset;
     private JButton randomBackground;
     private JButton randomClockColor;
+    private JButton currentTime;
 
 
-    private ClockPanel panel2;
+    private ClockPanel panel;
 
     // Here is our main method where the background for the clock is created, also we place the buttons, size.
 
@@ -25,9 +27,9 @@ public class Clock extends JFrame implements ActionListener {
 
         setTitle("Clock");
 
-        panel2 = new ClockPanel();
-        panel2.setRunning(false);
-        this.add(panel2, BorderLayout.CENTER);
+        panel = new ClockPanel();
+        panel.setRunning(true);
+        this.add(panel, BorderLayout.CENTER);
 
         start = new JButton("Start");
         start.addActionListener(this);
@@ -37,6 +39,9 @@ public class Clock extends JFrame implements ActionListener {
 
         reset = new JButton("Reset");
         reset.addActionListener(this);
+
+        currentTime = new JButton("CurrentTime");
+        currentTime.addActionListener(this);
 
         randomBackground = new JButton("RandomBackground");
         randomBackground.addActionListener(this);
@@ -52,6 +57,7 @@ public class Clock extends JFrame implements ActionListener {
         buttons.add(start);
         buttons.add(stop);
         buttons.add(reset);
+        buttons.add(currentTime);
         buttons.add(randomBackground);
         buttons.add(randomClockColor);
         this.add(buttons, BorderLayout.SOUTH);
@@ -86,31 +92,54 @@ public class Clock extends JFrame implements ActionListener {
 
 
         if (e.getSource() == start) {
-            panel2.setRunning(true);
+            panel.setRunning(true);
+            start.setBackground(Color.green);
+            stop.setBackground(new JButton().getBackground());
         }
 
         if (e.getSource() == stop) {
-            panel2.setRunning(false);
+            panel.setRunning(false);
+            start.setBackground(new JButton().getBackground());
+            stop.setBackground(Color.green);
         }
 
         if (e.getSource() == reset) {
-            panel2.setSeconds(0);
-            panel2.setMinutes(0);
-            panel2.setHours(0);
-            panel2.setRunning(false);
-            panel2.repaint();
+            panel.setSeconds(0);
+            panel.setMinutes(0);
+            panel.setHours(0);
+            panel.setRunning(false);
+            panel.repaint();
+
+            start.setBackground(new JButton().getBackground());
+            stop.setBackground(new JButton().getBackground());
+        }
+
+        if(e.getSource() == currentTime) {
+
+           panel.setSeconds(LocalTime.now().getSecond());
+           panel.setMinutes(LocalTime.now().getMinute());
+           panel.setHours(LocalTime.now().getHour());
+           panel.setRunning(true);
+           panel.repaint();
+
+            start.setBackground(new JButton().getBackground());
+            stop.setBackground(new JButton().getBackground());
         }
 
         if (e.getSource() == randomBackground) {
-            panel2.paint(new Color(r, g, b));
-            panel2.repaint();
-            random = new Random();
+            panel.paint(new Color(r, g, b));
+            panel.repaint();
+
+            start.setBackground(new JButton().getBackground());
+            stop.setBackground(new JButton().getBackground());
         }
 
         if (e.getSource() == randomClockColor) {
-            panel2.paintClock(new Color(r2, g2, b2));
-            panel2.repaint();
-            random = new Random();
+            panel.paintClock(new Color(r2, g2, b2));
+            panel.repaint();
+
+            start.setBackground(new JButton().getBackground());
+            stop.setBackground(new JButton().getBackground());
         }
 
 
