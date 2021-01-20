@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Clock extends JFrame implements ActionListener {
 
@@ -15,9 +16,14 @@ public class Clock extends JFrame implements ActionListener {
     private JButton randomBackground;
     private JButton randomClockColor;
     private JButton currentTime;
+    private JButton next;
 
 
-    private ClockPanel panel;
+    private CardLayout cardLayout = new CardLayout();
+    private JPanel cards = new JPanel(cardLayout);
+    private ArrayList<AbstractClockPanel> clockPanels = new ArrayList<>();
+    private ClockPanel panel = new ClockPanel();
+    private ClockPanelNews panelNews = new ClockPanelNews();
 
     // Here is our main method where the background for the clock is created, also we place the buttons, size.
 
@@ -27,9 +33,21 @@ public class Clock extends JFrame implements ActionListener {
 
         setTitle("Clock");
 
-        panel = new ClockPanel();
         panel.setRunning(true);
-        this.add(panel, BorderLayout.CENTER);
+        panelNews.setRunning(true);
+
+        panel.repaint();
+        panelNews.repaint();
+
+        clockPanels.add(panel);
+        clockPanels.add(panelNews);
+
+        for (AbstractClockPanel panel : clockPanels) {
+            cards.add(panel);
+        }
+
+
+        this.add(cards, BorderLayout.CENTER);
 
         start = new JButton("Start");
         start.addActionListener(this);
@@ -49,6 +67,9 @@ public class Clock extends JFrame implements ActionListener {
         randomClockColor = new JButton("ClockBackground");
         randomClockColor.addActionListener(this);
 
+        next = new JButton("News");
+        next.addActionListener(this);
+
 
         JPanel buttons = new JPanel(new FlowLayout());
 
@@ -60,6 +81,7 @@ public class Clock extends JFrame implements ActionListener {
         buttons.add(currentTime);
         buttons.add(randomBackground);
         buttons.add(randomClockColor);
+        buttons.add(next);
         this.add(buttons, BorderLayout.SOUTH);
 
         // Size is defined here.
@@ -67,7 +89,7 @@ public class Clock extends JFrame implements ActionListener {
         this.setSize(700, 500);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //check once again
+        //this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //check once again
         this.setVisible(true);
 
     }
@@ -92,57 +114,75 @@ public class Clock extends JFrame implements ActionListener {
 
 
         if (e.getSource() == start) {
-            panel.setRunning(true);
-            start.setBackground(Color.green);
-            stop.setBackground(new JButton().getBackground());
+            for (AbstractClockPanel panel : clockPanels) {
+                panel.setRunning(true);
+
+                start.setBackground(Color.green);
+                stop.setBackground(new JButton().getBackground());
+            }
         }
 
         if (e.getSource() == stop) {
-            panel.setRunning(false);
-            start.setBackground(new JButton().getBackground());
-            stop.setBackground(Color.green);
+            for (AbstractClockPanel panel : clockPanels) {
+                panel.setRunning(false);
+
+                start.setBackground(new JButton().getBackground());
+                stop.setBackground(Color.green);
+            }
         }
 
         if (e.getSource() == reset) {
-            panel.setSeconds(0);
-            panel.setMinutes(0);
-            panel.setHours(0);
-            panel.setRunning(false);
-            panel.repaint();
+            for (AbstractClockPanel panel : clockPanels) {
+                panel.setSeconds(0);
+                panel.setMinutes(0);
+                panel.setHours(0);
+                panel.setRunning(false);
+                panel.repaint();
 
-            start.setBackground(new JButton().getBackground());
-            stop.setBackground(new JButton().getBackground());
+                start.setBackground(new JButton().getBackground());
+                stop.setBackground(new JButton().getBackground());
+            }
         }
 
         if(e.getSource() == currentTime) {
+            for (AbstractClockPanel panel : clockPanels) {
+                panel.setSeconds(LocalTime.now().getSecond());
+                panel.setMinutes(LocalTime.now().getMinute());
+                panel.setHours(LocalTime.now().getHour());
+                panel.setRunning(true);
+                panel.repaint();
 
-           panel.setSeconds(LocalTime.now().getSecond());
-           panel.setMinutes(LocalTime.now().getMinute());
-           panel.setHours(LocalTime.now().getHour());
-           panel.setRunning(true);
-           panel.repaint();
-
-            start.setBackground(new JButton().getBackground());
-            stop.setBackground(new JButton().getBackground());
+                start.setBackground(new JButton().getBackground());
+                stop.setBackground(new JButton().getBackground());
+            }
         }
 
         if (e.getSource() == randomBackground) {
-            panel.paint(new Color(r, g, b));
-            panel.repaint();
+            for (AbstractClockPanel panel : clockPanels) {
+                panel.paint(new Color(r, g, b));
+                panel.repaint();
 
-            start.setBackground(new JButton().getBackground());
-            stop.setBackground(new JButton().getBackground());
+                start.setBackground(new JButton().getBackground());
+                stop.setBackground(new JButton().getBackground());
+            }
         }
 
         if (e.getSource() == randomClockColor) {
-            panel.paintClock(new Color(r2, g2, b2));
-            panel.repaint();
+            for (AbstractClockPanel panel : clockPanels) {
+                panel.paintClock(new Color(r2, g2, b2));
+                panel.repaint();
+
+                start.setBackground(new JButton().getBackground());
+                stop.setBackground(new JButton().getBackground());
+            }
+        }
+
+        if (e.getSource() == next) {
+            cardLayout.next(cards);
 
             start.setBackground(new JButton().getBackground());
             stop.setBackground(new JButton().getBackground());
+
         }
-
-
-
     }
 }
