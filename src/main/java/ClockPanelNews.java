@@ -11,6 +11,7 @@ public class ClockPanelNews extends AbstractClockPanel {
 
     private JTextArea textArea = new JTextArea();
 
+    // Creating a new panel which is going to show last 3 news from BBC website, it is an another design for our clock.
     public ClockPanelNews() {
         start();
         TextURL url = null;
@@ -25,16 +26,17 @@ public class ClockPanelNews extends AbstractClockPanel {
             JSONObject obj = new JSONObject(contents);
             JSONArray arr = obj.getJSONArray("articles");
             textArea.append("BBC News.\n\n");
+
+            // This for-loop is created to get the first three reports from the website
             for (int i = 0; i < 3; i++)
             {
             String title = arr.getJSONObject(i).getString("title");
             String description = arr.getJSONObject(i).getString("description");
-            //String author = arr.getJSONObject(i).getString("author");
 
             textArea.append(title);
             textArea.append("\n");
 
-            textArea.append("   "+description);
+            textArea.append(""+description);
             textArea.append("\n\n");
        }
 
@@ -49,10 +51,10 @@ public class ClockPanelNews extends AbstractClockPanel {
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
         textArea.setLocation(350, 50);
-        textArea.setSize(300, 300);
+        textArea.setSize(310, 320);
         textArea.setOpaque(true);
-        //textArea.setBackground(new Color(0, 0, 0));
-        textArea.setBackground(Color.white);
+        textArea.setBackground(Color.lightGray);
+        textArea.setMargin(new Insets(20,20,20,20));
     }
 
     public void paintComponent(Graphics g) {

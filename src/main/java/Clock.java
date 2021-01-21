@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Clock extends JFrame implements ActionListener {
 
-
     // Creating variables for Buttons.
     private JButton start;
     private JButton stop;
