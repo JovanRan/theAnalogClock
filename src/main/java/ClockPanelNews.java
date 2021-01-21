@@ -14,17 +14,19 @@ public class ClockPanelNews extends AbstractClockPanel {
     public ClockPanelNews() {
         start();
         TextURL url = null;
+        //create text area adding News
         try {
             url = new TextURL("https://newsapi.org/v1/articles?source=bbc-news&sortBy=top&apiKey=4dbc17e007ab436fb66416009dfb59a8");
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        String contents = url.read();
-        JSONObject obj = new JSONObject(contents);
-        JSONArray arr = obj.getJSONArray("articles");
-        textArea.append("BBC News.\n\n");
-        for (int i = 0; i < 3; i++)
-        {
+             } catch (MalformedURLException e) {
+                 e.printStackTrace();
+             }
+            String contents = url.read();
+            try {
+            JSONObject obj = new JSONObject(contents);
+            JSONArray arr = obj.getJSONArray("articles");
+            textArea.append("BBC News.\n\n");
+            for (int i = 0; i < 3; i++)
+            {
             String title = arr.getJSONObject(i).getString("title");
             String description = arr.getJSONObject(i).getString("description");
             //String author = arr.getJSONObject(i).getString("author");
@@ -35,6 +37,10 @@ public class ClockPanelNews extends AbstractClockPanel {
             textArea.append("   "+description);
             textArea.append("\n\n");
        }
+
+        } catch (NullPointerException e) {
+            textArea.append("\n  Internet error!\n");
+        }
         setLayout(null);
 
         this.add(textArea);
