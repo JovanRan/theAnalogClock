@@ -10,7 +10,7 @@ public abstract class AbstractClockPanel extends JPanel implements Runnable{
     double angle = Math.PI / 30;
     private Thread thread;
 
-    Color color = Color.blue;
+    Color color = Color.CYAN;
     Color circleColor = Color.white;
 
     public void start() {
