@@ -6,6 +6,17 @@ import java.time.LocalTime;
 import java.util.Random;
 import java.util.ArrayList;
 
+/* As the project name "theAnalogClock" already says, the project is about an analog clock.
+ * You can change the background of the window and the background of the clock, how often you want and always change it to different colors.
+ * It is also possible to use the Clock as a stopwatch, for this you have the buttons "Start", "Stop", "Reset".
+ * To change from the stopwatch to the clock, you can use the button "CurrentTime".
+ * Another feature is the actual news. You can check the news with the button "news".
+ *
+ * To start and see the clock you have to run the class called clock.
+ *
+ */
+
+
 public class Clock extends JFrame implements ActionListener {
 
     // Creating variables for Buttons.

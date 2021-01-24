@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.time.LocalTime;
 
+//A short description of the project can be found in the class "Clock".
+
 public abstract class AbstractClockPanel extends JPanel implements Runnable{
     protected int seconds = LocalTime.now().getSecond();
     protected int minutes = LocalTime.now().getMinute();

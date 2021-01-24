@@ -7,6 +7,8 @@ import java.awt.geom.Line2D;
 import java.net.MalformedURLException;
 import java.time.LocalDate;
 
+//A short description of the project can be found in the class "Clock".
+
 public class ClockPanelNews extends AbstractClockPanel {
 
     private JTextArea textArea = new JTextArea();

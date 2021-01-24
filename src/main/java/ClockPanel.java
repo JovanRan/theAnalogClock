@@ -3,6 +3,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.time.LocalDate;
 
+//A short description of the project can be found in the class "Clock".
+
 public class ClockPanel extends AbstractClockPanel {
 
     public ClockPanel() {

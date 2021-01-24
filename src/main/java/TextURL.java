@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.UnknownHostException;
 
+//A short description of the project can be found in the class "Clock".
 
 public final class TextURL {
     private static final int BUFFER_SIZE = 1024 * 10;
