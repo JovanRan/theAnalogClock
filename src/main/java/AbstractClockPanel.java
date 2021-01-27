@@ -4,7 +4,7 @@ import java.time.LocalTime;
 
 //A short description of the project can be found in the class "Clock".
 
-//The function of the clock itself is programmed here, with standard values (background, seconds, minutes, hours,..)
+//The function of the clock itself is programmed here, with standard values (background, seconds, minutes, hour, ...)
 
 public abstract class AbstractClockPanel extends JPanel implements Runnable{
 
@@ -41,8 +41,16 @@ public abstract class AbstractClockPanel extends JPanel implements Runnable{
         this.hours = hours;
     }
 
+
     public void run() {
         while (true) {
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             if (running == true) {
                 if (seconds == 59) {
                     seconds = 0;
@@ -50,12 +58,6 @@ public abstract class AbstractClockPanel extends JPanel implements Runnable{
                     seconds++;
                 }
                 repaint();
-            }
-
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
 
             if (running == true && seconds == 0) {
@@ -85,4 +87,5 @@ public abstract class AbstractClockPanel extends JPanel implements Runnable{
     public void paintClock(Color c) {
         this.circleColor = c;
     }
+
 }

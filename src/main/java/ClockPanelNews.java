@@ -59,6 +59,8 @@ public class ClockPanelNews extends AbstractClockPanel {
         textArea.setMargin(new Insets(20,20,20,20));
     }
 
+//All graphic things are created here (changeable Background for the clock and the background, digital clock, clock hands)
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D gd = (Graphics2D) g;

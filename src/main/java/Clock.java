@@ -148,6 +148,7 @@ public class Clock extends JFrame implements ActionListener {
                 panel.setRunning(false);
                 panel.repaint();
 
+
                 start.setBackground(new JButton().getBackground());
                 stop.setBackground(new JButton().getBackground());
             }
