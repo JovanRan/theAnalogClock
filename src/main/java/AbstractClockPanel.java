@@ -4,7 +4,10 @@ import java.time.LocalTime;
 
 //A short description of the project can be found in the class "Clock".
 
+//The function of the clock itself is programmed here, with standard values (background, seconds, minutes, hours,..)
+
 public abstract class AbstractClockPanel extends JPanel implements Runnable{
+
     protected int seconds = LocalTime.now().getSecond();
     protected int minutes = LocalTime.now().getMinute();
     protected int hours = LocalTime.now().getHour();

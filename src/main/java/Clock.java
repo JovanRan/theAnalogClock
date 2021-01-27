@@ -20,13 +20,13 @@ import java.util.ArrayList;
 public class Clock extends JFrame implements ActionListener {
 
     // Creating variables for Buttons.
-    private JButton start;
-    private JButton stop;
-    private JButton reset;
-    private JButton randomBackground;
-    private JButton randomClockColor;
-    private JButton currentTime;
-    private JButton next;
+    private final JButton start;
+    private final JButton stop;
+    private final JButton reset;
+    private final JButton randomBackground;
+    private final JButton randomClockColor;
+    private final JButton currentTime;
+    private final JButton next;
 
 
     private CardLayout cardLayout = new CardLayout();
@@ -94,12 +94,11 @@ public class Clock extends JFrame implements ActionListener {
         buttons.add(next);
         this.add(buttons, BorderLayout.SOUTH);
 
-        // Size is defined here.
+        // Size of the Window is defined here.
 
         this.setSize(700, 500);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //check once again
         this.setVisible(true);
 
     }

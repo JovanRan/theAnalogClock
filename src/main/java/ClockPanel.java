@@ -12,6 +12,8 @@ public class ClockPanel extends AbstractClockPanel {
     }
 
 
+//All graphic things are created here (changeable Background for the clock and the background, digital clock, clock hands)
+
     public void paintComponent(Graphics g) {
 
         Graphics2D gd = (Graphics2D) g;
