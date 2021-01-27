@@ -46,7 +46,7 @@ public abstract class AbstractClockPanel extends JPanel implements Runnable{
         while (true) {
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -71,7 +71,7 @@ public abstract class AbstractClockPanel extends JPanel implements Runnable{
 
             if (running == true && minutes == 0 && seconds == 0) {
                 if (hours == 23) {
-                    hours = 0;
+                    hours = 12;
                 } else {
                     hours++;
                 }
